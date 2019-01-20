@@ -130,7 +130,6 @@ GROUP BY
     s.last_name;
     
 -- 6c. List each film and the number of actors who are listed for that film. Use tables `film_actor` and `film`. Use inner join.
-select * from payment limit 10;
 SELECT
 	f.title,
     count(distinct fa.actor_id) as actors
@@ -139,8 +138,8 @@ FROM
 INNER JOIN
 	film_actor fa ON f.film_id=fa.film_id
 GROUP BY f.title;
--- 6d. How many copies of the film `Hunchback Impossible` exist in the inventory system?
 
+-- 6d. How many copies of the film `Hunchback Impossible` exist in the inventory system?
 SELECT
 	f.title,
     count(*) as inventory
@@ -148,8 +147,8 @@ FROM
 	film f
 INNER JOIN
 	inventory i ON f.film_id=i.film_id
-GROUP BY
-	f.title;
+WHERE
+	f.title = 'Hunchback Impossible';
     
 -- 6e. Using the tables `payment` and `customer` and the `JOIN` command, list the total paid by each customer. List the customers alphabetically by last name:
 SELECT
