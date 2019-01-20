@@ -120,7 +120,7 @@ INNER JOIN
 SELECT
 	s.first_name,
     s.last_name,
-    sum(p.amount) as total_amount
+    sum(p.amount) as 'total amount'
 FROM
 	staff s
 INNER JOIN
