@@ -241,13 +241,20 @@ join country co using(country_id);
     
 -- 7h. List the top five genres in gross revenue in descending order. 
 -- (**Hint**: you may need to use the following tables: category, film_category, inventory, payment, and rental.)
-select * from film f 
-join film_category fc using(film_id)
-join category cat using(category_id)
-join inventory i using(film_id)
-join rental r using(inventory_id)
-join payment p using(rental_id)
-limit 10;
+SELECT c.name AS 'Genre'
+	, SUM(p.amount) AS 'Gross Revenue'
+FROM category c
+	JOIN film_category fc
+		ON fc.category_id = c.category_id
+	JOIN inventory i
+		ON i.film_id = fc.film_id
+	JOIN rental r
+		ON r.inventory_id = i.inventory_id
+	JOIN payment p
+		ON p.rental_id = r.rental_id
+GROUP BY c.name
+ORDER BY SUM(p.amount) DESC
+LIMIT 5;
 
 select 
 cat.name as genre,
