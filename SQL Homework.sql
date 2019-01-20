@@ -185,24 +185,22 @@ FROM(
     FROM film
     WHERE title='ALONE TRIP') f
 INNER JOIN
-		film_actor fa ON f.film_id=fa.film_id ;  
+		film_actor fa ON f.film_id=fa.film_id
+GROUP BY
+		fa.actor_id;  
+        
    
 -- 7c. You want to run an email marketing campaign in Canada, for which you will need the names and email addresses of all Canadian customers. 
 -- Use joins to retrieve this information.
-select * from customer;
-select * from address;
-SELECT
-	cus.first_name,
-    cus.last_name,
-    cus.email
-FROM
-	customer cus
-INNER JOIN
-	address a on cus.address_id=a.address_id
-INNER JOIN
-	city c ON a.city_id=c.city_id
-INNER JOIN
-	country co ON c.country; 
+SELECT first_name, last_name, email
+FROM customer c
+	JOIN 
+    address a ON a.address_id = c.address_id
+	JOIN 
+    city ci ON ci.city_id = a.city_id
+	JOIN 
+    country co ON co.country_id = ci.country_id
+WHERE co.country = 'Canada';
     
 -- 7d. Sales have been lagging among young families, and you wish to target all family movies for a promotion. 
 -- Identify all movies categorized as famiy films.
