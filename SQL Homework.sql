@@ -104,16 +104,7 @@ SET first_name = CASE
 WHERE actor_id=172;
 
 -- 5a. You cannot locate the schema of the `address` table. Which query would you use to re-create it?
-CREATE TABLE address_name(
-address_id smallint(5) unsigned,
-address varchar(50),
-address2 varchar(50),
-district varchar(20),
-city_id smallint(5) unsigned,
-postal_code varchar(10),
-phone varchar(20),
-location geometry,
-last_update timestamp);
+CREATE SCHEMA address;
 
 -- 6a. Use `JOIN` to display the first and last names, as well as the address, of each staff member. Use the tables `staff` and `address`:
 SELECT
